@@ -1,7 +1,7 @@
 <?php
 /**
  * Plugin Name: Simple Matomo Tracking Code
- * Plugin URI: http://www.rolandbaer.ch/software/wordpress/plugin-matomo-tracking/
+ * Plugin URI: http://www.rolandbaer.ch/software/wordpress/simple-matomo-tracking-code/
  * Description: This plugin makes it simple to add Matomo Web Analytics code to your WebSite.
  * Version: 0.1.0
  * Author: Roland Bär
@@ -209,11 +209,79 @@ if ( ! class_exists( 'SMTC_Filter' ) ) {
 		 * Insert the tracking code into the page
 		 */
 		static function spool_analytics() {
-			?><!-- Matomo plugin active --><?php
+			?><!-- Simple Matomo Tracking Code plugin active --><?php
+
+			// <!-- Matomo -->
+			// <script type="text/javascript">
+			//   var _paq = window._paq = window._paq || [];
+			//   _paq.push(['trackPageView']);
+			//   _paq.push(['enableLinkTracking']);
+			//   (function() {
+			// 	var u="//{$MATOMO_URL}/";
+			// 	_paq.push(['setTrackerUrl', u+'matomo.php']);
+			// 	_paq.push(['setSiteId', {$IDSITE}]);
+			// 	var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+			// 	g.type='text/javascript'; g.async=true; g.src=u+'matomo.js'; s.parentNode.insertBefore(g,s);
+			//   })();
+			// </script>
+			// <!-- End Matomo Code -->
+
+			// <!-- Matomo -->
+			// <script type="text/javascript">
+			//   var _paq = window._paq = window._paq || [];
+			//   _paq.push(['trackPageView']);
+			//   _paq.push(['enableLinkTracking']);
+			//   (function() {
+			// 	var u="//matomo.rolandbaer.ch/";
+			// 	_paq.push(['setTrackerUrl', u+'matomo.php']);
+			// 	_paq.push(['setSiteId', 4]);
+			// 	var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+			// 	g.type='text/javascript'; g.async=true; g.src=u+'matomo.js'; s.parentNode.insertBefore(g,s);
+			//   })();
+			// </script>
+			// <!-- End Matomo Code -->
+
 			
-			$options  = get_option('MatomoAnalyticsPP');
+			$script_template = "<!-- Matomo -->
+<script type=\"text/javascript\">
+  var _paq = window._paq = window._paq || [];
+  _paq.push(['trackPageView']);
+  {LINK_TRACKING}
+  (function() {
+    var u=\"{MATOMO_URL}\";
+    _paq.push(['setTrackerUrl', u+'matomo.php']);
+    _paq.push(['setSiteId', {IDSITE}]);
+    var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+    g.type='text/javascript'; g.async=true; g.src=u+'matomo.js'; s.parentNode.insertBefore(g,s);
+  })();
+</script>
+<!-- End Matomo Code -->";
+
+ 			$options  = get_option('MatomoAnalyticsPP');
 			
-			if ($options["siteid"] != "" && (!current_user_can('edit_users') || $options["admintracking"]) && !is_preview() ) { ?>
+			if ($options["siteid"] != "" && (!current_user_can('edit_users') || $options["admintracking"]) && !is_preview() ) {
+				
+				if ( $options['matomo_host'] ) {
+					$matomo_url = "//" . $options['matomo_host'];
+					$matomo_url = rtrim($matomo_url, '/') . '/';
+					$matomo_url = $matomo_url . $options['matomo_baseurl'];
+					$matomo_url = rtrim($matomo_url, '/') . '/';
+				} else {
+					$matomo_url = $options['matomo_baseurl'];
+					$matomo_url = rtrim($matomo_url, '/') . '/';
+				}
+
+				if ( $options["dltracking"]) {
+					$link_tracking = "_paq.push(['enableLinkTracking']);";
+				}
+				
+				$transitions = array(
+					"{MATOMO_URL}" => $matomo_url,
+					"{IDSITE}" => $options["siteid"],
+					"{LINK_TRACKING}" => $link_tracking);
+				echo strtr($script_template, $transitions);
+				
+				/* ?>
 				<!-- Matomo code inserted by Simple Matomo Tracking Code plugin -->
 				<script type="text/javascript">
 				<?php if ( $options['matomo_host'] ) { ?>
@@ -236,7 +304,7 @@ if ( ! class_exists( 'SMTC_Filter' ) ) {
 				} catch( err ) {}
 				</script>
 				<!-- /Matomo -->
-	<?php
+	<?php */
 			}
 		}
 	}
