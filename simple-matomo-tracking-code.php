@@ -211,37 +211,6 @@ if ( ! class_exists( 'SMTC_Filter' ) ) {
 		static function spool_analytics() {
 			?><!-- Simple Matomo Tracking Code plugin active --><?php
 
-			// <!-- Matomo -->
-			// <script type="text/javascript">
-			//   var _paq = window._paq = window._paq || [];
-			//   _paq.push(['trackPageView']);
-			//   _paq.push(['enableLinkTracking']);
-			//   (function() {
-			// 	var u="//{$MATOMO_URL}/";
-			// 	_paq.push(['setTrackerUrl', u+'matomo.php']);
-			// 	_paq.push(['setSiteId', {$IDSITE}]);
-			// 	var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
-			// 	g.type='text/javascript'; g.async=true; g.src=u+'matomo.js'; s.parentNode.insertBefore(g,s);
-			//   })();
-			// </script>
-			// <!-- End Matomo Code -->
-
-			// <!-- Matomo -->
-			// <script type="text/javascript">
-			//   var _paq = window._paq = window._paq || [];
-			//   _paq.push(['trackPageView']);
-			//   _paq.push(['enableLinkTracking']);
-			//   (function() {
-			// 	var u="//matomo.rolandbaer.ch/";
-			// 	_paq.push(['setTrackerUrl', u+'matomo.php']);
-			// 	_paq.push(['setSiteId', 4]);
-			// 	var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
-			// 	g.type='text/javascript'; g.async=true; g.src=u+'matomo.js'; s.parentNode.insertBefore(g,s);
-			//   })();
-			// </script>
-			// <!-- End Matomo Code -->
-
-			
 			$script_template = "<!-- Matomo -->
 <script type=\"text/javascript\">
   var _paq = window._paq = window._paq || [];
@@ -280,38 +249,10 @@ if ( ! class_exists( 'SMTC_Filter' ) ) {
 					"{IDSITE}" => $options["siteid"],
 					"{LINK_TRACKING}" => $link_tracking);
 				echo strtr($script_template, $transitions);
-				
-				/* ?>
-				<!-- Matomo code inserted by Simple Matomo Tracking Code plugin -->
-				<script type="text/javascript">
-				<?php if ( $options['matomo_host'] ) { ?>
-					var pkBaseURL = document.location.protocol + "//" + "<?php echo $options['matomo_host']; ?>" + "<?php echo $options['matomo_baseurl']; ?>";
-				<?php } else { ?>
-					var pkBaseURL = document.location.protocol + "//" + document.location.host + "<?php echo $options['matomo_baseurl'] ?>";
-				<?php
-			};
-			?>
-				document.write(unescape("%3Cscript src='" + pkBaseURL + "piwik.js' type='text/javascript'%3E%3C/script%3E"));
-				</script><script type="text/javascript">
-				try {
-				var piwikTracker = Piwik.getTracker(pkBaseURL + "piwik.php", <?php echo $options['siteid']; ?>);
-				piwikTracker.setDocumentTitle(document.title);
-				piwikTracker.trackPageView();
-			<?php
-			if ( $options["dltracking"]) { ?>
-				piwikTracker.enableLinkTracking();
-			<?php } ?>
-				} catch( err ) {}
-				</script>
-				<!-- /Matomo -->
-	<?php */
 			}
 		}
 	}
 }
-
-$options  = get_option('MatomoAnalyticsPP',"");
-
 
 // adds the menu item to the admin interface
 add_action('admin_menu', array('SMTC_Admin','add_config_page'));
