@@ -3,7 +3,7 @@
  * Plugin Name: Simple Matomo Tracking Code
  * Plugin URI: http://www.rolandbaer.ch/software/wordpress/simple-matomo-tracking-code/
  * Description: This plugin makes it simple to add Matomo Web Analytics code to your WebSite.
- * Version: 0.1.0
+ * Version: 0.5.0
  * Author: Roland Bär
  * Author URI: http://www.rolandbaer.ch/
  * Text Domain: simple-matomo-tracking-code
@@ -198,7 +198,7 @@ if ( ! class_exists( 'SMTC_Admin' ) ) {
 
 		function warning() {
 			echo "
-			<div id='analytics-warning' class='updated fade-ff0000'><p><strong>Matomo Web Analytics is not active.</strong> You must <a href='plugins.php?page=piwikanalytics.php'>enter your Site ID</a> for it to work.</p></div>";
+			<div id='analytics-warning' class='updated fade-ff0000'><p><strong>Matomo Web Analytics is not active.</strong> You must <a href='plugins.php?page=simple-matomo-tracking-code.php'>enter your Site ID</a> for it to work.</p></div>";
 		}
 	}
 }
