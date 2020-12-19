@@ -12,6 +12,11 @@
  * Based on Jules Stuifbergen's Piwik Analytics plugin
  */
 
+ // If this file is called directly, abort.
+if ( ! defined( 'WPINC' ) ) {
+	die;
+}
+
 /*
  * Admin User Interface
  */
