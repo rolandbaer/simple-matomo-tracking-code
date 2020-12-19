@@ -12,7 +12,7 @@ your website. It has several useful options.
 
 == Description ==
 
-This is a unofficial, basic WordPress plugin for the Matomo Web Analytics tool.
+This is a unofficial, basic WordPress plugin for the Matomo web analytics software platform.
 It adds the Matomo javascript code into every page of your website, so
 you don't have to code PHP to add it to your templates.
 
