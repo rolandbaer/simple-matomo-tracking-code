@@ -88,18 +88,6 @@ if ( ! class_exists( 'SMTC_Admin' ) ) {
 			$options  = get_option('MatomoAnalyticsPP');
 			?>
 			<div class="wrap">
-				<script type="text/javascript">
-					function toggle_help(ele, ele2) {
-						var expl = document.getElementById(ele2);
-						if (expl.style.display == "block") {
-							expl.style.display = "none";
-							ele.innerHTML = "What's this?";
-						} else {
-							expl.style.display = "block";
-							ele.innerHTML = "Hide explanation";
-						}
-					}
-				</script>
 				<h2>Simple Matomo Tracking Code Configuration</h2>
 				<form action="" method="post" id="analytics-conf">
 					<?php
