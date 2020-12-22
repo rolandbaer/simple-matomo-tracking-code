@@ -5,7 +5,7 @@ Requires at least: 5.0
 Tested up to: 5.6
 License: GPLv3 or later
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
-Stable tag: 0.5.0
+Stable tag: 0.5.1
 
 This unofficial plugin adds the Matomo Web Analytics javascript code into the footer of
 your website. It has several useful options.
@@ -42,6 +42,9 @@ See also [The Matomo Website](https://matomo.org/).
 
 
 == Changelog ==
+
+= 0.5.1 =
+* input validation
 
 = 0.5.0 =
 * new javascript code from matomo

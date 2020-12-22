@@ -3,7 +3,7 @@
  * Plugin Name: Simple Matomo Tracking Code
  * Plugin URI: http://www.rolandbaer.ch/software/wordpress/simple-matomo-tracking-code/
  * Description: This plugin makes it simple to add Matomo Web Analytics code to your WebSite.
- * Version: 0.5.0
+ * Version: 0.5.1
  * Author: Roland Bär
  * Author URI: http://www.rolandbaer.ch/
  * Text Domain: simple-matomo-tracking-code
@@ -48,6 +48,14 @@ if ( ! class_exists( 'SMTC_Admin' ) ) {
 			}
 		}
 
+		static function sanitize_siteid( &$value ) {
+			// remove invalid characters
+			$value = preg_replace( '$[^0-9]*$', '', $value );
+			$value = (int) $value;
+	
+			return ( $value > 0 );
+		}
+
 		static function config_page() {
 			if (isset($_GET['reset']) && $_GET['reset'] == "true") {
 				restore_defaults();
@@ -56,13 +64,18 @@ if ( ! class_exists( 'SMTC_Admin' ) ) {
 			if ( isset($_POST['submit']) ) {
 				if (!current_user_can('manage_options')) die(__('You cannot edit the Simple Matomo Tracking Code options.'));
 				check_admin_referer('analyticspp-config');
-				$options['siteid'] = $_POST['siteid'];
+				$siteid = $_POST['siteid'];
+				if(SMTC_Admin::sanitize_siteid($siteid)) {
+					$options['siteid'] = $siteid;
+				}
 
-				if (isset($_POST['matomo_baseurl']))
-					$options['matomo_baseurl'] = strtolower($_POST['matomo_baseurl']);
+				if (isset($_POST['matomo_baseurl'])) {
+					$options['matomo_baseurl'] = strtolower(sanitize_text_field($_POST['matomo_baseurl']));
+				}
 
-				if (isset($_POST['matomo_host']))
-					$options['matomo_host'] = strtolower($_POST['matomo_host']);
+				if (isset($_POST['matomo_host'])) {
+					$options['matomo_host'] = strtolower(sanitize_text_field($_POST['matomo_host']));
+				}
 
 				if (isset($_POST['dltracking'])) {
 					$options['dltracking'] = true;
