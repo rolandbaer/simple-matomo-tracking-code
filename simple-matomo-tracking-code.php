@@ -48,12 +48,10 @@ if ( ! class_exists( 'SMTC_Admin' ) ) {
 			}
 		}
 
-		static function sanitize_siteid( &$value ) {
+		static function sanitize_siteid( $value ) {
 			// remove invalid characters
 			$value = preg_replace( '$[^0-9]*$', '', $value );
-			$value = (int) $value;
-	
-			return ( $value > 0 );
+			return (int) $value;
 		}
 
 		static function config_page() {
@@ -64,8 +62,8 @@ if ( ! class_exists( 'SMTC_Admin' ) ) {
 			if ( isset($_POST['submit']) ) {
 				if (!current_user_can('manage_options')) die(__('You cannot edit the Simple Matomo Tracking Code options.'));
 				check_admin_referer('analyticspp-config');
-				$siteid = $_POST['siteid'];
-				if(SMTC_Admin::sanitize_siteid($siteid)) {
+				$siteid = SMTC_Admin::sanitize_siteid($_POST['siteid']);
+				if( $siteid> 0 ) {
 					$options['siteid'] = $siteid;
 				}
 
@@ -281,10 +279,10 @@ add_action('wp_footer', array('SMTC_Filter','spool_analytics'));
 /**
  * Register the "book" custom post type
  */
-function pluginprefix_setup_post_type() {
+function simple_matomo_tracking_code_setup_post_type() {
     register_post_type( 'book', ['public' => true ] ); 
 } 
-add_action( 'init', 'pluginprefix_setup_post_type' );
+add_action( 'init', 'simple_matomo_tracking_code_setup_post_type' );
  
  
 /**
