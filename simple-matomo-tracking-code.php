@@ -3,7 +3,7 @@
  * Plugin Name: Simple Matomo Tracking Code
  * Plugin URI: http://www.rolandbaer.ch/software/wordpress/simple-matomo-tracking-code/
  * Description: This plugin makes it simple to add Matomo Web Analytics code to your WebSite.
- * Version: 0.5.2
+ * Version: 1.0.0
  * Author: Roland Bär
  * Author URI: http://www.rolandbaer.ch/
  * Text Domain: simple-matomo-tracking-code
@@ -181,7 +181,7 @@ if ( ! class_exists( 'SMTC_Admin' ) ) {
 				if ( $options['matomo_host'] ) {
 					$matomo_url = "//" . $options['matomo_host'];
 					$matomo_url = rtrim($matomo_url, '/') . '/';
-					$matomo_url = $matomo_url . $options['matomo_baseurl'];
+					$matomo_url = $matomo_url . ltrim($options['matomo_baseurl'], '/');
 					$matomo_url = rtrim($matomo_url, '/') . '/';
 				} else {
 					$matomo_url = $options['matomo_baseurl'];
