@@ -38,7 +38,7 @@ See also [The Matomo Website](https://matomo.org/).
 1. Install and activate the plugin as you normally would. (You can find more details and
    instructions [here](https://wordpress.org/support/article/managing-plugins/).)
 2. Visit the "Simple Matomo Tracking Code" page in the "Settings" section and adjust the parameters.
-   Don’t forget to click "Save Changes" when you're done.
+   Don’t forget to click "Update Settings" when you're done.
 
 
 == Changelog ==
