@@ -249,7 +249,7 @@ if ( ! class_exists( 'SMTC_Filter' ) ) {
 				if ( $options['matomo_host'] ) {
 					$matomo_url = "//" . $options['matomo_host'];
 					$matomo_url = rtrim($matomo_url, '/') . '/';
-					$matomo_url = $matomo_url . $options['matomo_baseurl'];
+					$matomo_url = $matomo_url . ltrim($options['matomo_baseurl'], '/');
 					$matomo_url = rtrim($matomo_url, '/') . '/';
 				} else {
 					$matomo_url = $options['matomo_baseurl'];
