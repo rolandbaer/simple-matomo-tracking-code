@@ -208,14 +208,14 @@ if ( ! class_exists( 'SMTC_Admin' ) ) {
 			}
 		}
 
-		function success() {
+		static function success() {
 			echo "
 			<div id='analytics-warning' class='updated'><p><strong>";
 			_e('Simple Matomo Tracking Code Configuration successfully updated.', 'simple-matomo-tracking-code');
 			echo "</strong></p></div>";
 		}
 
-		function warning() {
+		static function warning() {
 			echo "
 			<div id='analytics-warning' class='notice notice-warning'><p><strong>";
 			_e('Matomo Web Analytics is not active.', 'simple-matomo-tracking-code');
