@@ -3,7 +3,7 @@
  * Plugin Name: Simple Matomo Tracking Code
  * Plugin URI: http://www.rolandbaer.ch/software/wordpress/simple-matomo-tracking-code/
  * Description: This plugin makes it simple to add Matomo Web Analytics code to your WebSite.
- * Version: 1.0.0
+ * Version: 1.0.1
  * Author: Roland Bär
  * Author URI: http://www.rolandbaer.ch/
  * Text Domain: simple-matomo-tracking-code
@@ -178,15 +178,7 @@ if ( ! class_exists( 'SMTC_Admin' ) ) {
 				</form>
 				<p>
 				<?php
-				if ( $options['matomo_host'] ) {
-					$matomo_url = "//" . $options['matomo_host'];
-					$matomo_url = rtrim($matomo_url, '/') . '/';
-					$matomo_url = $matomo_url . ltrim($options['matomo_baseurl'], '/');
-					$matomo_url = rtrim($matomo_url, '/') . '/';
-				} else {
-					$matomo_url = $options['matomo_baseurl'];
-					$matomo_url = rtrim($matomo_url, '/') . '/';
-				}
+				$matomo_url = SMTC_Admin::build_matomo_url($options);
 				printf(
 					/* translators: %s: URL of the Matomo installation */
 					__('All options set? Then <a href="%s" title="Matomo admin url" target="_blank">check out your stats!</a>', 'simple-matomo-tracking-code'),
@@ -223,6 +215,20 @@ if ( ! class_exists( 'SMTC_Admin' ) ) {
 			_e('You must enter your Site ID for it to work.', 'simple-matomo-tracking-code');
 			echo "</p></div>";
 		}
+
+		static function build_matomo_url($options) {
+			if ( $options['matomo_host'] ) {
+				$matomo_url = "//" . $options['matomo_host'];
+				$matomo_url = rtrim($matomo_url, '/') . '/';
+				$matomo_url = $matomo_url . ltrim($options['matomo_baseurl'], '/');
+				$matomo_url = rtrim($matomo_url, '/') . '/';
+			} else {
+				$matomo_url = $options['matomo_baseurl'];
+				$matomo_url = rtrim($matomo_url, '/') . '/';
+			}
+
+			return $matomo_url;
+		}
 	}
 }
 
@@ -254,24 +260,15 @@ if ( ! class_exists( 'SMTC_Filter' ) ) {
 </script>
 <!-- End Matomo Code -->";
 
- 			$options  = get_option('MatomoAnalyticsPP');
-			
+			$options  = get_option('MatomoAnalyticsPP');
+
 			if ($options["siteid"] != "" && (!current_user_can('edit_users') || $options["admintracking"]) && !is_preview() ) {
-				
-				if ( $options['matomo_host'] ) {
-					$matomo_url = "//" . $options['matomo_host'];
-					$matomo_url = rtrim($matomo_url, '/') . '/';
-					$matomo_url = $matomo_url . ltrim($options['matomo_baseurl'], '/');
-					$matomo_url = rtrim($matomo_url, '/') . '/';
-				} else {
-					$matomo_url = $options['matomo_baseurl'];
-					$matomo_url = rtrim($matomo_url, '/') . '/';
-				}
+				$matomo_url = SMTC_Admin::build_matomo_url($options);
 
 				if ( $options["dltracking"]) {
 					$link_tracking = "_paq.push(['enableLinkTracking']);";
 				}
-				
+
 				$transitions = array(
 					"{MATOMO_URL}" => $matomo_url,
 					"{IDSITE}" => $options["siteid"],
