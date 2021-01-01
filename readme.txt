@@ -7,17 +7,14 @@ License: GPLv3 or later
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 Stable tag: 1.0.1
 
-This unofficial plugin adds the Matomo Web Analytics javascript code into the footer of
-your website. It has several useful options.
+This unofficial plugin adds the Matomo Web Analytics javascript code into the footer of your website. It has several useful options.
 
 == Description ==
 
 This is a unofficial, basic WordPress plugin for the Matomo web analytics software platform.
-It adds the Matomo javascript code into every page of your website, so
-you don't have to code PHP to add it to your templates.
+It adds the Matomo javascript code into every page of your website, so you don't have to code PHP to add it to your templates.
 
-It is based quite heavily on the (no more supported) Piwik Analytics WordPress plugin which 
-itself is based on the (no more available) Google Analytics wordpress plugin by Joost de Valk.
+It is based quite heavily on the (no more supported) Piwik Analytics WordPress plugin which itself is based on the (no more available) Google Analytics wordpress plugin by Joost de Valk.
 
 The following options are supported:
 
@@ -27,16 +24,15 @@ The following options are supported:
 * option to control download tracking
 * option to exclude the admin user (probably you)
 
-Please note, this plugin requires a running Matomo installation somewhere under
-your control. It does not include Matomo itself.
+Please note, this plugin requires a running Matomo installation somewhere under your control. It does not include Matomo itself.
 
 See also [The Matomo Website](https://matomo.org/).
 
 
 == Installation ==
 
-1. Install and activate the plugin as you normally would. (You can find more details and
-   instructions [here](https://wordpress.org/support/article/managing-plugins/).)
+1. Install and activate the plugin as you normally would.
+   (You can find more details and instructions [here](https://wordpress.org/support/article/managing-plugins/).)
 2. Visit the "Simple Matomo Tracking Code" page in the "Settings" section and adjust the parameters.
    Don’t forget to click "Update Settings" when you're done.
 
