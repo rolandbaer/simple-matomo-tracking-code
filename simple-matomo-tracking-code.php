@@ -115,7 +115,7 @@ if ( ! class_exists( 'SMTC_Admin' ) ) {
 					<table class="form-table" style="width:100%;">
 					<tr>
 						<th scope="row" valign="top">
-							<label for="siteid"><?php _e('Matomo site id', 'simple-matomo-tracking-code'); ?></label>
+							<label for="siteid"><?php _e('Matomo site ID', 'simple-matomo-tracking-code'); ?></label>
 						</th>
 						<td>
 							<input id="siteid" name="siteid" class="small-text" type="number" size="3" maxlength="4" value="<?php echo $options['siteid']; ?>" /><br/>
@@ -124,7 +124,7 @@ if ( ! class_exists( 'SMTC_Admin' ) ) {
 								<?php _e('In the Matomo interface, when you "Add Website" you are shown a piece of JavaScript that you are told to insert into the page, in that script is a unique string that identifies the website you just defined, that is your site ID (usually "1").', 'simple-matomo-tracking-code'); ?>
 								</p>
 								<p>
-								<?php _e('Once you have entered your site id in the box above your pages will be trackable by Matomo Web Analytics.', 'simple-matomo-tracking-code'); ?>
+								<?php _e('Once you have entered your site ID in the box above your pages will be trackable by Matomo Web Analytics.', 'simple-matomo-tracking-code'); ?>
 								</p>
 							</div>
 						</td>
@@ -181,7 +181,7 @@ if ( ! class_exists( 'SMTC_Admin' ) ) {
 				$matomo_url = SMTC_Admin::build_matomo_url($options);
 				printf(
 					/* translators: %s: URL of the Matomo installation */
-					__('All options set? Then <a href="%s" title="Matomo admin url" target="_blank">check out your stats!</a>', 'simple-matomo-tracking-code'),
+					__('All options set? Then <a href="%s" title="Matomo admin url" target="_blank">check out your stats</a>!', 'simple-matomo-tracking-code'),
 					$matomo_url
 				);
 				?>
@@ -212,7 +212,7 @@ if ( ! class_exists( 'SMTC_Admin' ) ) {
 			<div id='analytics-warning' class='notice notice-warning'><p><strong>";
 			_e('Matomo Web Analytics is not active.', 'simple-matomo-tracking-code');
 			echo "</strong> ";
-			_e('You must enter your Site ID for it to work.', 'simple-matomo-tracking-code');
+			_e('You must enter your site ID for it to work.', 'simple-matomo-tracking-code');
 			echo "</p></div>";
 		}
 
