@@ -24,7 +24,7 @@ The following options are supported:
 * option to control download tracking
 * option to exclude the admin user (probably you)
 
-Please note, this plugin requires a running Matomo installation somewhere under your control. It does not include Matomo itself.
+Please note, this plugin requires a self-contained Matomo installation somewhere under your control. It does not include Matomo itself.
 
 See also [The Matomo Website](https://matomo.org/).
 
