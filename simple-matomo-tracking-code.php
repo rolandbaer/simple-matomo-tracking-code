@@ -38,7 +38,7 @@ if ( ! class_exists( 'SMTC_Admin' ) ) {
 			}
 		}
 
-		function restore_defaults() {
+		static function restore_defaults() {
 			$options['siteid'] = 1;
 			$options['matomo_host'] = '';
 			$options['matomo_baseurl'] = '/matomo/';
@@ -50,7 +50,7 @@ if ( ! class_exists( 'SMTC_Admin' ) ) {
 		function init() {
 			$options  = get_option('MatomoAnalyticsPP');
 			if ( empty($options) ) {
-				$this->restore_defaults();
+				SMTC_Admin::restore_defaults();
 			}
 		}
 
@@ -62,7 +62,7 @@ if ( ! class_exists( 'SMTC_Admin' ) ) {
 
 		static function config_page() {
 			if ( isset($_GET['reset']) && $_GET['reset'] == "true" ) {
-				restore_defaults();
+				SMTC_Admin::restore_defaults();
 			}
 
 			if ( isset($_POST['submit']) ) {
