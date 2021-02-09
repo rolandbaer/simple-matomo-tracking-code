@@ -3,7 +3,7 @@
  * Plugin Name: Simple Matomo Tracking Code
  * Plugin URI: http://www.rolandbaer.ch/software/wordpress/simple-matomo-tracking-code/
  * Description: This plugin makes it simple to add Matomo Web Analytics code to your WebSite.
- * Version: 1.0.2
+ * Version: 1.0.3
  * Author: Roland Bär
  * Author URI: http://www.rolandbaer.ch/
  * Text Domain: simple-matomo-tracking-code
@@ -25,7 +25,7 @@ if ( ! class_exists( 'SMTC_Admin' ) ) {
 
 	class SMTC_Admin {
 
-		static function add_config_page() {
+		static function add_config_page() : void {
 			global $wpdb;
 			if ( function_exists('add_options_page') ) {
 				add_options_page(
@@ -38,7 +38,7 @@ if ( ! class_exists( 'SMTC_Admin' ) ) {
 			}
 		}
 
-		static function restore_defaults() {
+		static function restore_defaults() : void {
 			$options['siteid'] = 1;
 			$options['matomo_host'] = '';
 			$options['matomo_baseurl'] = '/matomo/';
@@ -47,20 +47,20 @@ if ( ! class_exists( 'SMTC_Admin' ) ) {
 			update_option('MatomoAnalyticsPP',$options);
 		}
 
-		function init() {
+		function init() : void {
 			$options  = get_option('MatomoAnalyticsPP');
 			if ( empty($options) ) {
 				SMTC_Admin::restore_defaults();
 			}
 		}
 
-		static function sanitize_siteid( $value ) {
+		static function sanitize_siteid( string $value ) : int {
 			// remove invalid characters
 			$value = preg_replace( '$[^0-9]*$', '', $value );
 			return (int) $value;
 		}
 
-		static function config_page() {
+		static function config_page() : void {
 			if ( isset($_GET['reset']) && $_GET['reset'] == "true" ) {
 				SMTC_Admin::restore_defaults();
 			}
@@ -200,14 +200,14 @@ if ( ! class_exists( 'SMTC_Admin' ) ) {
 			}
 		}
 
-		static function success() {
+		static function success() : void {
 			echo "
 			<div id='analytics-warning' class='updated'><p><strong>";
 			_e('Simple Matomo Tracking Code Configuration successfully updated.', 'simple-matomo-tracking-code');
 			echo "</strong></p></div>";
 		}
 
-		static function warning() {
+		static function warning() : void {
 			echo "
 			<div id='analytics-warning' class='notice notice-warning'><p><strong>";
 			_e('Matomo Web Analytics is not active.', 'simple-matomo-tracking-code');
@@ -216,7 +216,7 @@ if ( ! class_exists( 'SMTC_Admin' ) ) {
 			echo "</p></div>";
 		}
 
-		static function build_matomo_url($options) {
+		static function build_matomo_url(array $options) : string {
 			if ( $options['matomo_host'] ) {
 				$matomo_url = "//" . $options['matomo_host'];
 				$matomo_url = rtrim($matomo_url, '/') . '/';
@@ -242,7 +242,7 @@ if ( ! class_exists( 'SMTC_Filter' ) ) {
 		/*
 		 * Insert the tracking code into the page
 		 */
-		static function spool_analytics() {
+		static function spool_analytics() : void {
 			?><!-- Simple Matomo Tracking Code plugin active --><?php
 
 			$script_template = "<!-- Matomo -->
@@ -265,6 +265,7 @@ if ( ! class_exists( 'SMTC_Filter' ) ) {
 			if ( $options["siteid"] != "" && (!current_user_can('edit_users') || $options["admintracking"]) && !is_preview() ) {
 				$matomo_url = SMTC_Admin::build_matomo_url($options);
 
+				$link_tracking = "";
 				if ( $options["dltracking"] ) {
 					$link_tracking = "_paq.push(['enableLinkTracking']);";
 				}
@@ -288,7 +289,7 @@ add_action('wp_footer', array('SMTC_Filter','spool_analytics'));
 /**
  * Register the "book" custom post type
  */
-function simple_matomo_tracking_code_setup_post_type() {
+function simple_matomo_tracking_code_setup_post_type() : void {
 	register_post_type( 'book', ['public' => true ] );
 }
 add_action( 'init', 'simple_matomo_tracking_code_setup_post_type' );
@@ -297,7 +298,7 @@ add_action( 'init', 'simple_matomo_tracking_code_setup_post_type' );
 /**
  * Activate the plugin.
  */
-function simple_matomo_tracking_code_activate() { 
+function simple_matomo_tracking_code_activate() : void { 
 	$admin = new SMTC_Admin();
 	$admin->init();
 }
