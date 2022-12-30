@@ -33,4 +33,4 @@ jobs:
       run: composer install --prefer-dist --no-progress
 
     - name: PHPStan for WordPress
-      run: phpstan analyse -c phpstan.neon --memory-limit 512M
+      run: php vendor/bin/phpstan analyse -c phpstan.neon --memory-limit 512M
