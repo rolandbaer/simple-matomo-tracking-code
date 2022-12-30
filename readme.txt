@@ -6,7 +6,7 @@ Tested up to: 6.1
 Requires PHP: 7.1
 License: GPLv3 or later
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
-Stable tag: 1.0.3
+Stable tag: 1.1.0
 
 This unofficial plugin adds the Matomo Web Analytics javascript code into the footer of your website. It has several useful options.
 
@@ -39,6 +39,9 @@ See also [The Matomo Website](https://matomo.org/).
 
 
 == Changelog ==
+
+= 1.1.0 =
+* uninstall updated for multisite compatibility
 
 = 1.0.3 =
 * Bugfix for reset, fixes from static code analysis, requires now PHP 7.1 or higher
