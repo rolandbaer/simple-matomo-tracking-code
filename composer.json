@@ -1,4 +1,6 @@
 {
+    "name": "rolandbaer/simple-matomo-tracking-code",
+    "description": "This is a unofficial, basic WordPress plugin for the Matomo web analytics software platform.",
     "require-dev": {
         "szepeviktor/phpstan-wordpress": "^1.1.6",
         "phpstan/extension-installer": "^1.2"
