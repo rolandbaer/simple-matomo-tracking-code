@@ -1,5 +1,6 @@
 parameters:
   level: 8
   paths:
-    - .
+    - simple-matomo-tracking-code.php
+    - uninstall.php
   checkMissingIterableValueType: false
