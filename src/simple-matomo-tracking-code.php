@@ -216,6 +216,9 @@ if ( ! class_exists( 'SMTC_Admin' ) ) {
 			echo "</p></div>";
 		}
 
+		/**
+		 * @param array{'siteid': int, 'matomo_host': string, 'matomo_baseurl': string, 'admintracking': bool, 'dltracking': bool} $options
+		 */
 		static function build_matomo_url(array $options) : string {
 			if ( $options['matomo_host'] ) {
 				$matomo_url = "//" . $options['matomo_host'];
