@@ -110,6 +110,7 @@ if ( ! class_exists( 'SMTC_Admin' ) ) {
 						<?php esc_html_e("Matomo, formerly known as Piwik, is a downloadable web analytics software platform free of charge under the GPL license.", 'simple-matomo-tracking-code'); ?>
 						<br />
 						<?php printf(
+							/* translators: %s: link to the Matomo website */
 							esc_html__('If you don\'t have Matomo installed, you can get it at %1$s.', 'simple-matomo-tracking-code'),
 							'<a href="https://matomo.org/">matomo.org</a>');
 						?>
@@ -183,13 +184,13 @@ if ( ! class_exists( 'SMTC_Admin' ) ) {
 				<?php
 				$matomo_url = SMTC_Admin::build_matomo_url($options);
 				printf(
-					/* translators: %s: URL of the Matomo installation */
+					/* translators: %s: Link to the matomo installation*/
 					esc_html__('All options set? Then %1$s!', 'simple-matomo-tracking-code'),
 					sprintf(
 						'<a href="%s" title="%s" target="_blank">%s</a>',
 						esc_url($matomo_url),
-						esc_html__('Matomo admin url', 'simple-matomo-tracking-code'),
-						esc_html__('check out your stats', 'simple-matomo-tracking-code')
+						esc_html_x('Matomo admin url', 'title of the link to the matomo installation', 'simple-matomo-tracking-code'),
+						esc_html_x('check out your stats', 'text of the link to the matomo installation', 'simple-matomo-tracking-code')
 					)
 				);
 				?>
