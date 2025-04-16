@@ -2,7 +2,7 @@
 Contributors: rbaer
 Tags: matomo, piwik, analytics, stats, statistics
 Requires at least: 5.0
-Tested up to: 6.6
+Tested up to: 6.7
 Requires PHP: 7.1
 License: GPLv3 or later
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
@@ -76,3 +76,10 @@ Q: The Matomo Web Analytics javascript code does not show up.
 A1: Make sure your theme has a call to wp_footer() in the footer.php file
 A2: Make sure you're not logged in as admin.
 
+Q: How can I report security bugs?
+
+A: You can report security bugs through the Patchstack Vulnerability Disclosure
+Program. The Patchstack team help validate, triage and handle any security 
+vulnerabilities. [Report a security vulnerability.](https://patchstack.com/database/vdp/simple-matomo-tracking-code)
+
+Or you send them directly to [info@rolandbaer.ch](mailto:info@rolandbaer.ch).
