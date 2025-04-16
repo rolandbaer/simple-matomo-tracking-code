@@ -72,13 +72,14 @@ See also [The Matomo Website](https://matomo.org/).
 
 == Frequently Asked Questions ==
 
-Q: The Matomo Web Analytics javascript code does not show up.
-A1: Make sure your theme has a call to wp_footer() in the footer.php file
-A2: Make sure you're not logged in as admin.
+= The Matomo Web Analytics javascript code does not show up. =
 
-Q: How can I report security bugs?
+1. Make sure your theme has a call to wp_footer() in the footer.php file
+2. Make sure you're not logged in as admin.
 
-A: You can report security bugs through the Patchstack Vulnerability Disclosure
+= How can I report security bugs? =
+
+You can report security bugs through the Patchstack Vulnerability Disclosure
 Program. The Patchstack team help validate, triage and handle any security 
 vulnerabilities. [Report a security vulnerability.](https://patchstack.com/database/vdp/simple-matomo-tracking-code)
 
