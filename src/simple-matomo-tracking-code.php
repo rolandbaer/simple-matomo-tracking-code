@@ -32,7 +32,7 @@ if ( ! class_exists( 'SMTC_Admin' ) ) {
 					__('Simple Matomo Tracking Code Configuration', 'simple-matomo-tracking-code'),
 					__('Simple Matomo Tracking Code', 'simple-matomo-tracking-code'),
 					'manage_options',
-					basename(__FILE__),
+					'simple-matomo-tracking-code',
 					array('SMTC_Admin','config_page')
 				);
 			}
@@ -68,17 +68,21 @@ if ( ! class_exists( 'SMTC_Admin' ) ) {
 			if ( isset($_POST['submit']) ) {
 				if ( ! current_user_can('manage_options') ) die(esc_html__('You cannot edit the Simple Matomo Tracking Code options.', 'simple-matomo-tracking-code'));
 				check_admin_referer('analyticspp-config');
-				$siteid = SMTC_Admin::sanitize_siteid($_POST['siteid']);
-				if( $siteid> 0 ) {
+				$siteid = 0;
+				if ( isset($_POST['siteid']) ) {
+					$siteid = SMTC_Admin::sanitize_siteid(wp_unslash($_POST['siteid']));
+				}
+
+				if ( $siteid > 0 ) {
 					$options['siteid'] = $siteid;
 				}
 
 				if ( isset($_POST['matomo_baseurl']) ) {
-					$options['matomo_baseurl'] = strtolower(sanitize_text_field($_POST['matomo_baseurl']));
+					$options['matomo_baseurl'] = strtolower(sanitize_text_field(wp_unslash($_POST['matomo_baseurl'])));
 				}
 
 				if ( isset($_POST['matomo_host']) ) {
-					$options['matomo_host'] = strtolower(sanitize_text_field($_POST['matomo_host']));
+					$options['matomo_host'] = strtolower(sanitize_text_field(wp_unslash($_POST['matomo_host'])));
 				}
 
 				if ( isset($_POST['dltracking']) ) {
