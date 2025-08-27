@@ -3,7 +3,7 @@
  * Plugin Name: Simple Matomo Tracking Code
  * Plugin URI: http://www.rolandbaer.ch/software/wordpress/simple-matomo-tracking-code/
  * Description: This plugin makes it simple to add Matomo Web Analytics code to your WebSite.
- * Version: 1.1.0
+ * Version: 1.1.1
  * Author: Roland Bär
  * Author URI: http://www.rolandbaer.ch/
  * Text Domain: simple-matomo-tracking-code
@@ -143,7 +143,7 @@ if ( ! class_exists( 'SMTC_Admin' ) ) {
 							<label for="matomo_host"><?php _e('Hostname of the matomo server (optional)', 'simple-matomo-tracking-code'); ?></label>
 						</th>
 						<td>
-							<input id="matomo_host" name="matomo_host" type="text" size="40" maxlength="99" value="<?php echo $options['matomo_host']; ?>" /><br/>
+							<input id="matomo_host" name="matomo_host" type="text" size="40" maxlength="99" value="<?php echo esc_html( $options['matomo_host'] ); ?>" /><br/>
 							<div id="expl3">
 								<p>
 								<?php _e('Example: www.yourdomain.com -- Leave blank (default) if this is the same as your website. Do NOT include the http(s):// bit.', 'simple-matomo-tracking-code'); ?>
@@ -156,7 +156,7 @@ if ( ! class_exists( 'SMTC_Admin' ) ) {
 							<label for="matomo_baseurl"><?php _e('Base URL path of matomo installation', 'simple-matomo-tracking-code'); ?></label>
 						</th>
 						<td>
-							<input id="matomo_baseurl" name="matomo_baseurl" type="text" size="40" maxlength="99" value="<?php echo $options['matomo_baseurl']; ?>" /><br/>
+							<input id="matomo_baseurl" name="matomo_baseurl" type="text" size="40" maxlength="99" value="<?php echo esc_html( $options['matomo_baseurl'] ); ?>" /><br/>
 							<div id="expl2" style="display:none;">
 								<p>
 								<?php _e("The URL path to the matomo installation. E.g. /matomo/ or /stats/. Don't forget the trailing slash!", 'simple-matomo-tracking-code'); ?>
