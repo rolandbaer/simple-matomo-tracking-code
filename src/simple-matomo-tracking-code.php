@@ -261,7 +261,7 @@ if ( ! class_exists( 'SMTC_Filter' ) ) {
 		static function spool_analytics() : void {
 			?><!-- Simple Matomo Tracking Code plugin active --><?php
 
-			$script_template = "<!-- Matomo -->
+			$script_template_clean = "<!-- Matomo -->
 <script type=\"text/javascript\">
   var _paq = window._paq = window._paq || [];
   _paq.push(['trackPageView']);
@@ -286,11 +286,12 @@ if ( ! class_exists( 'SMTC_Filter' ) ) {
 					$link_tracking_safe = "_paq.push(['enableLinkTracking']);";
 				}
 
-				$transitions = array(
+				$transitions_safe = array(
 					"{MATOMO_URL}" => esc_html( $matomo_url ),
 					"{IDSITE}" => esc_html( $options["siteid"] ),
 					"{LINK_TRACKING}" => $link_tracking_safe );
-				echo strtr($script_template, $transitions);
+
+				echo strtr($script_template_clean, $transitions_safe);
 			}
 		}
 	}
